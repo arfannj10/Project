@@ -4,7 +4,7 @@
 
 @section('content')
 <nav class="container mt-5">
-    <form method="POST" action="{{route('nilai.store', $students->student_id)}}">
+    <form method="POST" action="{{route('nilai.store', $students->id)}}">
         @csrf
         <input type="hidden" name="kelas_id" value="{{$students->kelas_id}}">
         <div class="mb-3">

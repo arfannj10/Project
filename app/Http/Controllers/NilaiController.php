@@ -70,9 +70,9 @@ class NilaiController extends Controller
      */
     public function show($id)
     {
-        // $data['students']= Student::with('kelas')->first();
         $data['students'] = Student::with('kelas')->OrderBy('nama', 'asc')->get();
-        // $data['kelas'] = Kelas::with('students')->get();
+        // $data['students']= Student::with('kelas')->first();
+        // $data['students'] = Student::findorFail($id);
         return view('/nilai/show',$data);
         
         
