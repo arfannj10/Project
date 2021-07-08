@@ -33,11 +33,10 @@ class NilaiController extends Controller
      */
     public function create()
     {
-        $data['pelajaran'] = Pelajaran::all();
-        // $data['students'] = Student::where('kelas_id', $id)->first(); 
         $data['students'] = Student::with('kelas')->first();
-        // return view('/nilai/create', $data);
-        return $data;
+        $data['pelajaran'] = Pelajaran::all(); 
+        return view('/nilai/create', $data);
+        // return $data;
     }
 
     /**
@@ -49,16 +48,16 @@ class NilaiController extends Controller
     public function store(Request $request)
     {
         
-        $request->validate([
-            'student_id'=>'required',
-            'pelajaran_id'=>'required',
-            'kelas_id'=>'required',
-            'uts'=>'required',
-            'uat'=>'required'
-        ]);
+        // $request->validate([
+        //     'student_id'=>'required',
+        //     'pelajaran_id'=>'required',
+        //     'kelas_id'=>'required',
+        //     'uts'=>'required',
+        //     'uat'=>'required'
+        // ]);
 
-        // Nilai::create($request->all);
-
+        // Nilai::create($request->all());
+        // $data['data'] = Student::find($id);
         // return redirect('/nilai');
         return $request->all();
     }
@@ -71,9 +70,9 @@ class NilaiController extends Controller
      */
     public function show($id)
     {
+        // $data['students']= Student::with('kelas')->first();
         $data['students'] = Student::with('kelas')->OrderBy('nama', 'asc')->get();
         // $data['kelas'] = Kelas::with('students')->get();
-        // $data['students']= Student::findorFail($id);
         return view('/nilai/show',$data);
         
         

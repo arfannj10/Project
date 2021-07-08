@@ -17,7 +17,7 @@ class ClassController extends Controller
     public function index()
     {
         $data['tingkat'] = Tingkat::all();
-        $data['kelas'] = Kelas::with('tingkat')->get();
+        $data['kelas'] = Kelas::with('tingkat')->orderBy('nama_kelas','asc')->get();
         return view('/class/app', $data);
         // return $data;
     }
@@ -49,6 +49,8 @@ class ClassController extends Controller
         Kelas::create($request->all());
 
         return redirect('/kelas');
+
+        // return $request->all();
     }
 
     /**
@@ -61,7 +63,7 @@ class ClassController extends Controller
     {
         $data['students'] = Student::where('kelas_id', $id)->OrderBy('nama', 'asc')->get();
         $data['kelas'] = Kelas::findorFail($id);
-        return view('/students/show',$data);
+        return view('/class/show',$data);
         // return $data;
     }
 
