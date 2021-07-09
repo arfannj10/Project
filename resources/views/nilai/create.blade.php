@@ -6,6 +6,7 @@
 <nav class="container mt-5">
     <form method="POST" action="{{route('nilai.store', $students->id)}}">
         @csrf
+        <input type="hidden" name="student_id" value="{{$students->id}}">
         <input type="hidden" name="kelas_id" value="{{$students->kelas_id}}">
         <div class="mb-3">
             <label for="pelajaran_id" class="form-label">Mata Pelajaran</label>

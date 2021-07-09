@@ -3,6 +3,7 @@
 @section('title', 'Data Siswa')
 
 @section('content')
+
 <table class="table table-striped mt-3">
     <thead>
         <tr>

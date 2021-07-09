@@ -48,18 +48,19 @@ class NilaiController extends Controller
     public function store(Request $request)
     {
         
-        // $request->validate([
-        //     'student_id'=>'required',
-        //     'pelajaran_id'=>'required',
-        //     'kelas_id'=>'required',
-        //     'uts'=>'required',
-        //     'uat'=>'required'
-        // ]);
+        $request->validate([
+            'student_id'=>'required',
+            'pelajaran_id'=>'required',
+            'kelas_id'=>'required',
+            'uts'=>'required',
+            'uat'=>'required'
+        ]);
 
-        // Nilai::create($request->all());
-        // $data['data'] = Student::find($id);
-        // return redirect('/nilai');
-        return $request->all();
+        Nilai::create($request->all());
+        // $data['nilai'] = Nilai::all();
+        return redirect()->back();
+        // return $request->all();
+        // return $data;
     }
 
     /**
@@ -121,5 +122,14 @@ class NilaiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function allnilai()
+    {
+        $data['nilai'] = Nilai::all();
+        // $data['pelajaran'] = Pelajaran::all();
+        
+        return view('/nilai/nilai', $data);
+        // return $data;
     }
 }

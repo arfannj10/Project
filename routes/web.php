@@ -39,6 +39,7 @@ Route::resource('/pelajarans', PelajaranController::class);
 
 Route::resource('/kelas', ClassController::class);
 
+Route::get('/nilai/nilai', [NilaiController::class,'allnilai']);
 Route::resource('/nilai', NilaiController::class);
 
 Route::get('/', function () {

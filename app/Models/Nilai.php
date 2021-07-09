@@ -10,17 +10,17 @@ class Nilai extends Model
     use HasFactory;
 
     protected $table = "nilais";
-    protected $fillable = ['student_id','pelajaran_id','kelas_id', 'uts', 'uat'];
+    protected $fillable = ['pelajaran_id','student_id','kelas_id', 'uts', 'uat'];
 
     public function student(){
-        return $this->belongsTo(Student::class, 'student_id');
+        return $this->belongsTo(Student::class);
     }
 
     public function pelajaran(){
-        return $this->belongsTo(Pelajaran::class,'pelajaran_id');
+        return $this->belongsTo(Pelajaran::class);
     }
 
     public function kelas(){
-        return $this->belongsTo(Kelas::class,'kelas_id');
+        return $this->belongsTo(Kelas::class);
     }
 }
