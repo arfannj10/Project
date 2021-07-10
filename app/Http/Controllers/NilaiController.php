@@ -47,6 +47,8 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
+        // if ($request->uts && $request->uat) {
+        //     $nilai = ($request->uts + $request->uat) / 6;
         
         $request->validate([
             'student_id'=>'required',
@@ -127,6 +129,7 @@ class NilaiController extends Controller
     public function allnilai()
     {
         $data['nilai'] = Nilai::all();
+        $data['student'] = Student::with('kelas')->first();
         // $data['pelajaran'] = Pelajaran::all();
         
         return view('/nilai/nilai', $data);

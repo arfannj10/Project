@@ -21,6 +21,7 @@
             <td scope="row">{{$dt->nama}}</td>
             <td scope="row">
                 <a href="{{route('nilai.create', $dt->id)}}" class="btn btn-primary">Tambah Nilai</a>
+                <a href="{{url('/nilai/nilai', $dt->id)}}" class="btn btn-primary">Lihat Nilai</a>
                 <!-- <button data-toggle="modal"  data-bs-target="#nilaiModal" class="btn btn-sm btn-primary">Tambah Nilai</button> -->
             </td>
         </tr>
