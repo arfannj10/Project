@@ -77,7 +77,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $data['students'] = Student::where('kelas_id', $id)->OrderBy('nama', 'asc')->get();
+        $data['students'] = Student::where('tingkat_id', $id)->OrderBy('nama', 'asc')->get();
         $data['kelas'] = Kelas::findorFail($id);
         return view('/students/show',$data);
     }

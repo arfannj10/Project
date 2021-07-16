@@ -24,10 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'ADMIN') {
-            return view('/home');
-        }elseif(Auth::user()->role == 'GURU') {
-            return view('');
-        }
+        return view('pages/admin/dashboard');
     }
 }

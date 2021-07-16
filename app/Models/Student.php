@@ -13,7 +13,7 @@ class Student extends Model
 
     protected $table = 'students';
 
-    protected $fillable = ['kelas_id','nama','nis', 'tgl_lahir', 'alamat', 'sekolah', 'kelas','nama_ayah', 'nama_ibu', 'nmr_tlp'];
+    protected $fillable = ['tingkat_id','nama','nis', 'tgl_lahir', 'alamat', 'sekolah', 'kelas','nama_ayah', 'nama_ibu', 'nmr_tlp'];
 
     public function kelas()
     {

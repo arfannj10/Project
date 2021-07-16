@@ -1,40 +1,50 @@
-@extends('layouts/app')
+@extends('layouts.admin')
 
 @section('title', 'Data Siswa')
 
 @section('content')
-<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Tambah Data Siswa
-</button>
 
-<table class="table table-striped mt-3">
-    <thead>
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">Tingkat</th>
-            <th scope="col">Kelas</th>
-            <th scope="col">Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($kelas as $dt)
-        <tr>
-            <td scope="row">{{$loop->iteration}}</td>
-            <td scope="row">{{$dt->tingkat->tingkat}}</td>
-            <td scope="row">{{$dt->nama_kelas}}</td>
-            <td scope="row"><a href="{{route('students.show', $dt->id)}}" class="btn btn-primary">Show</a></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSaya">
+            Tambah Data
+        </button>
+        <div class="table-responsive mt-lg-3">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kelas</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($kelas as $kls)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$kls->nama_kelas}}</td>
+                        <td>
+                            <a href="{{route('students.show', $kls->id)}}" class="btn btn-primary">Show</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Siswa</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="modalSayaLabel">Tambah Data Siswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form method="post" action="{{route('students.store')}}">
@@ -43,7 +53,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="nis" class="form-label">NIS</label>
-                                <input type="text" class="form-control" name="nis" onkeypress="return inputAngka(event)" value=" {{ old('nis')}}" placeholder="Isi nis" required>
+                                <input type="text" class="form-control" name="nis" onkeypress="return inputAngka(event)"
+                                    value=" {{ old('nis')}}" placeholder="Isi nis" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
@@ -78,12 +89,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="kelas_id">Tingkat</label>
-                                <select id="kelas_id" name="kelas_id"
-                                    class="select2bs4 form-control @error('kelas_id') is-invalid @enderror">
+                                <label for="tingkat_id">Tingkat</label>
+                                <select id="tingkat_id" name="tingkat_id"
+                                    class="select2bs4 form-control @error('tingkat_id') is-invalid @enderror">
                                     <option value="">--Pilih Tingkat--</option>
-                                    @foreach($kelas as $kl)
-                                    <option value="{{$kl->id}}">{{$kl->nama_kelas}}</option>
+                                    @foreach($tingkat as $kl)
+                                    <option value="{{$kl->id}}">{{$kl->tingkat}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -99,14 +110,20 @@
                             </div>
                             <div class="mb-3">
                                 <label for="nmr_tlp" class="form-label">Nomor Telepon</label>
-                                <input type="text" class="form-control" name="nmr_tlp" onkeypress="return inputAngka(event)" value="{{ old('nmr_tlp')}}" placeholder="Isi nomor telepon" required>
+                                <input type="text" class="form-control" name="nmr_tlp"
+                                    onkeypress="return inputAngka(event)" value="{{ old('nmr_tlp')}}"
+                                    placeholder="Isi nomor telepon" required>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

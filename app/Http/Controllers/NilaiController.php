@@ -73,8 +73,9 @@ class NilaiController extends Controller
      */
     public function show($id)
     {
-        $data['students'] = Student::with('kelas')->OrderBy('nama', 'asc')->get();
+        $data['students'] = Student::with('kelas')->OrderBy('nama', 'asc')->first();
         // $data['students']= Student::with('kelas')->first();
+        $data['students'] = Student::with('kelas')->OrderBy('nama', 'asc')->get();
         // $data['students'] = Student::findorFail($id);
         return view('/nilai/show',$data);
         
@@ -126,7 +127,7 @@ class NilaiController extends Controller
         //
     }
 
-    public function allnilai()
+    public function allnilai($id)
     {
         $data['nilai'] = Nilai::all();
         $data['student'] = Student::with('kelas')->first();

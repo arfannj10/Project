@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\ClassController;
@@ -20,40 +22,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/absen', AbsenController::class);
 
-//guru
-// Route::get('/teachers', [TeacherController::class,'index']);
-// Route::get('/teachers/create', [TeacherController::class,'create']);
-// Route::post('/teachers', [TeacherController::class,'store']);
-// Route::get('/teachers/edit/{id}', [TeacherController::class,'edit']);
+Route::resource('/absen', AbsenController::class);
+// //guru
+// // Route::get('/teachers', [TeacherController::class,'index']);
+// // Route::get('/teachers/create', [TeacherController::class,'create']);
+// // Route::post('/teachers', [TeacherController::class,'store']);
+// // Route::get('/teachers/edit/{id}', [TeacherController::class,'edit']);
 Route::resource('/teachers', TeacherController::class);
 
-// Route::post('/students', [StudentController::class,'store']);
-Route::get('/students/show/{student}', [StudentController::class,'kelas']);
-// Route::post('/students/show', [StudentController::class,'nilai']);
+// // Route::post('/students', [StudentController::class,'store']);
+// Route::get('/students/show/{student}', [StudentController::class,'kelas']);
+// // Route::post('/students/show', [StudentController::class,'nilai']);
 Route::resource('/students', StudentController::class);
 
 
 Route::resource('/pelajarans', PelajaranController::class);
 
-Route::resource('/kelas', ClassController::class);
+// Route::resource('/kelas', ClassController::class);
 
-Route::get('/nilai/nilai', [NilaiController::class,'allnilai']);
+// Route::get('/nilai/nilai', [NilaiController::class,'allnilai']);
 Route::resource('/nilai', NilaiController::class);
 
-Route::get('/', function () {
-    return view('auth/login');
+Route::prefix('admin')
+->namespace('admin')
+->middleware(['auth','admin'])
+->group(function() {
+    Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 });
 
-Route::prefix('admin')
-    ->namespace('Admin')
-    ->middleware(['auth','admin'])
-    ->group(function() {
-        
-    });
+Route::get('/',[HomeController::class,'index'])->name('home');
 
+Auth::routes(['verify'=> true]);
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
