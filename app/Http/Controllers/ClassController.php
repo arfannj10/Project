@@ -29,8 +29,9 @@ class ClassController extends Controller
      */
     public function create()
     {
-        // $tingkat = Tingkat::all();
-        // return view('/class/create',compact('tingkat'));
+        $data['Students'] = Student::all();
+        $data['kelas'] = Kelas::all();
+        return view('/class/create',compact('tingkat'));
     }
 
     /**
@@ -109,4 +110,6 @@ class ClassController extends Controller
     {
         //
     }
+
+    
 }

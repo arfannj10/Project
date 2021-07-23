@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AddsiswaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\AbsenController;
@@ -8,7 +10,6 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/class/siswa/{{$kelas->id}}', [AddsiswaController::class,'siswa']);
+Route::post('/class/show', [AddsiswaController::class,'add']);
+
 
 Route::resource('/absen', AbsenController::class);
 // //guru
@@ -32,14 +36,15 @@ Route::resource('/absen', AbsenController::class);
 Route::resource('/teachers', TeacherController::class);
 
 // // Route::post('/students', [StudentController::class,'store']);
-// Route::get('/students/show/{student}', [StudentController::class,'kelas']);
+Route::get('/students/profil/{student}', [StudentController::class,'profile']);
 // // Route::post('/students/show', [StudentController::class,'nilai']);
 Route::resource('/students', StudentController::class);
 
 
 Route::resource('/pelajarans', PelajaranController::class);
 
-// Route::resource('/kelas', ClassController::class);
+// Route::get('/class/siswa/{kelas}', [ClassController::class,'siswa']);
+Route::resource('/kelas', ClassController::class);
 
 // Route::get('/nilai/nilai', [NilaiController::class,'allnilai']);
 Route::resource('/nilai', NilaiController::class);
@@ -52,6 +57,4 @@ Route::prefix('admin')
 });
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-
 Auth::routes(['verify'=> true]);
-

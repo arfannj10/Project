@@ -1,40 +1,52 @@
-@extends('layouts/app')
+@extends('layouts/admin')
 
 @section('title','Data Guru')
 
 @section('content')
 
-<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Tambah Data Guru
-</button>
-<table class="table table-striped mt-3">
-    <thead>
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">Mata Pelajaran</th>
-            <th scope="col">Lihat Guru</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($mapel as $dt)
-        <tr>
-            <td scope="row">{{$loop->iteration}}</td>
-            <td scope="row">{{$dt->matapelajaran}}</td>
-            <td>
-                <a href="{{route('teachers.show',$dt->id)}}" class="btn btn-primary">show</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSaya">
+            Tambah Data
+        </button>
+        <div class="table-responsive mt-lg-3">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($mapel as $kls)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$kls->matapelajaran}}</td>
+                        <td>
+                            <a href="{{route('teachers.show', $kls->id)}}" class="btn btn-primary">Show</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Guru</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="modalSayaLabel">Tambah Data Siswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form method="post" action="{{route('teachers.store')}}">

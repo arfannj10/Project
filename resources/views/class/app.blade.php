@@ -1,14 +1,20 @@
-@extends('layouts/app')
+@extends('layouts/admin')
 
 @section('title', 'Data Kelas')
 
 @section('content')
-<!-- <button><a href="{{route('kelas.create')}}">tambah</a></button> -->
-<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Tambah Kelas
-</button>
-<table class="table table-striped mt-3">
-    <thead>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data Kelas</h6>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSaya">
+            Tambah Data
+        </button>
+        <div class="table-responsive mt-lg-3">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
         <tr>
             <th scope="col">No</th>
             <th scope="col">Tingkat</th>
@@ -23,22 +29,32 @@
             <td scope="row">{{$kls->tingkat->tingkat}}</td>
             <td scope="row">{{$kls->nama_kelas}}</td>
             <td scope="row">
-                <a href="{{route('kelas.show', $kls->id)}}" class="btn btn-primary">Show</a>
+                <a href="{{route('kelas.show', $kls->id)}}" class="btn btn-info btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-info-circle"></i>
+                </span>
+                </a>
             </td>
         </tr>
         @endforeach
     </tbody>
-</table>
+            </table>
+        </div>
+    </div>
+</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!-- Modal -->
+<div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="modalSayaLabel">Tambah Data Siswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{route('kelas.store')}}">
+            <form method="post" action="{{route('kelas.store')}}">
                     @csrf
                     <div class="row">
                             <div class="form-group">

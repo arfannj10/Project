@@ -1,9 +1,13 @@
-@extends('layouts/app')
+@extends('layouts/admin')
 
 @section('title', 'Edit Matapelajaran')
 
 @section('content')
-<div class="card-body">
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Edit Data</h6>
+    </div>
+    <div class="card-body">
     <form method="post" action="{{route('pelajarans.update', $pelajarans->id)}}">
         @method('patch')
         @csrf
@@ -19,5 +23,6 @@
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    </div>
 </div>
 @endsection

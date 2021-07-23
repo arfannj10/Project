@@ -14,8 +14,8 @@ class PelajaranController extends Controller
      */
     public function index()
     {
-        $pelajarans = Pelajaran::all();
-        return view('/pelajaran/app', compact('pelajarans'));
+        $data['pelajarans'] = Pelajaran::all();
+        return view('/pelajaran/app', $data);
     }
 
     /**

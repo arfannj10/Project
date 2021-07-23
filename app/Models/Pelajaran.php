@@ -11,7 +11,7 @@ class Pelajaran extends Model
 
     protected $table = 'pelajarans';
 
-    protected $fillable = ['kd_mp', 'matapelajaran', 'tingkat'];
+    protected $fillable = ['kd_mp', 'matapelajaran'];
 
     public function nilai(){
         return $this->hasMany(Nilai::class);

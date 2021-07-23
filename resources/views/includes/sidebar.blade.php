@@ -39,7 +39,7 @@
             <h6 class="collapse-header">Management Components:</h6>
             <a class="collapse-item" href="/students">Siswa</a>
             <a class="collapse-item" href="/teachers">Guru</a>
-            <a class="collapse-item" href="/pelajaran">Pelajaran</a>
+            <a class="collapse-item" href="/pelajarans">Pelajaran</a>
             <a class="collapse-item" href="/kelas">Kelas</a>
         </div>
     </div>
@@ -47,7 +47,7 @@
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#">
+    <a class="nav-link collapsed" href="/absen">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Absen</span>
     </a>

@@ -6,7 +6,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Masukkan Siswa</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive mt-lg-3">
@@ -28,10 +28,7 @@
                         <td>{{$std->nama}}</td>
                         <td>{{$std->tingkat->tingkat}}</td>
                         <td>
-                            <div class="button-group">
-                                <a href="{{route('students.show', $std->id)}}" class="btn btn-primary">Show</a>
-                                
-                            </div>
+                            <form action="{{url('/kelas/show')}}" method="POST"><input type="hidden" name="kelas" value="{{$kelas->id}}"><input type="hidden" name="siswa" value="{{$students->siswa_id}}"><button class="btn btn-primary" type="submit">Tambahkan Ke Kelas</button>{!! csrf_field() !!}</form>
                         </td>
                     </tr>
                     @endforeach
@@ -40,6 +37,7 @@
         </div>
     </div>
 </div>
+
 
 
 @endsection

@@ -1,9 +1,14 @@
-@extends('layouts/app')
+@extends('layouts.admin')
 
-@section('title', 'Data Siswa')
+@section('title', 'Edit Data Siswa')
 
 @section('content')
-<div class="card-body">
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Edit Data</h6>
+    </div>
+    <div class="card-body">
     <form method="post" action="{{route('students.update',$students->id)}}">
         @method('patch')
         @csrf
@@ -47,11 +52,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="kelas_id">Tingkat</label>
+                    <label for="kelas_id">Kelas</label>
                     <select id="kelas_id" name="kelas_id"
                         class="select2bs4 form-control">
-                        @foreach($kelas as $kl)
-                        <option value="{{$kl->id}}" selected>{{$kl->nama_kelas}}</option>
+                        <option value="" selected></option>
+                        @foreach($kelas as $tk)
+                            <option value="{{$tk->id}}" selected>{{$tk->nama_kelas}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -74,5 +80,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    </div>
 </div>
 @endsection

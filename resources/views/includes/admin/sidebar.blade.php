@@ -23,12 +23,12 @@
 <hr class="sidebar-divider">
 
 <!-- Heading -->
-<div class="sidebar-heading">
+<!-- <div class="sidebar-heading">
     Management
-</div>
+</div> -->
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-chart-pie"></i>
@@ -43,10 +43,26 @@
             <a class="collapse-item" href="/kelas">Kelas</a>
         </div>
     </div>
-</li>
+</li> -->
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
+<a class="nav-link collapsed" href="/students">
+        <i class="fas fa-fw fa-user-graduate"></i>
+        <span>Siswa</span>
+    </a>
+    <a class="nav-link collapsed" href="/teachers">
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
+        <span>Guru</span>
+    </a>
+    <a class="nav-link collapsed" href="/pelajarans">
+        <i class="fas fa-fw fa-clipboard-list"></i>
+        <span>Pelajaran</span>
+    </a>
+    <a class="nav-link collapsed" href="/kelas">
+        <i class="fas fa-fw fa-school"></i>
+        <span>Kelas</span>
+    </a>
     <a class="nav-link collapsed" href="#">
         <i class="fas fa-fw fa-calendar-alt"></i>
         <span>Absen</span>

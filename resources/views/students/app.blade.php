@@ -14,29 +14,34 @@
         </button>
         <div class="table-responsive mt-lg-3">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Kelas</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($kelas as $kls)
-                    <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$kls->nama_kelas}}</td>
-                        <td>
-                            <a href="{{route('students.show', $kls->id)}}" class="btn btn-primary">Show</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
+            <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Kelas</th>
+            <th scope="col">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($kelas as $kls)
+        <tr>
+            <td scope="row">{{$loop->iteration}}</td>
+            <td scope="row">{{$kls->nama_kelas}}</td>
+            <td scope="row">
+                <a href="{{route('students.show', $kls->id)}}" class="btn btn-info btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-info-circle"></i>
+                </span>
+                </a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
             </table>
         </div>
     </div>
 </div>
 
+<!-- modal -->
 <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -89,12 +94,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="tingkat_id">Tingkat</label>
-                                <select id="tingkat_id" name="tingkat_id"
-                                    class="select2bs4 form-control @error('tingkat_id') is-invalid @enderror">
-                                    <option value="">--Pilih Tingkat--</option>
-                                    @foreach($tingkat as $kl)
-                                    <option value="{{$kl->id}}">{{$kl->tingkat}}</option>
+                                <label for="kelas_id">Kelas</label>
+                                <select id="kelas_id" name="kelas_id"
+                                    class="select2bs4 form-control @error('kelas_id') is-invalid @enderror">
+                                    <option value="">--Pilih Kelas Lembaga--</option>
+                                    @foreach($kelas as $kl)
+                                    <option value="{{$kl->id}}">{{$kl->nama_kelas}}</option>
                                     @endforeach
                                 </select>
                             </div>
