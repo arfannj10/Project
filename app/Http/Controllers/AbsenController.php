@@ -17,8 +17,8 @@ class AbsenController extends Controller
      */
     public function index()
     {
-        $class = Kelas::all();
-        return view('/absen/app',compact('class'));
+        $data['kelas'] = Kelas::all();
+        return view('/absen/app',$data);
     }
 
     /**
@@ -39,12 +39,39 @@ class AbsenController extends Controller
      */
     public function store(Request $request)
     {   
-            $check = $request->input(['student_id' => $request->student,'kelas_id' => $request->kelas, 'tanggal' => Carbon::now('Asia/Jakarta')->format('Y-m-d')]);
-            if(count($check)==0 && $request->status != "Hadir"){
-               Absen::create($request->all());
-            }
-        
-            return redirect()->back()->with('succes', 'Data berhasil diinput !');
+        if($request['status'] == 'Hadir'){
+
+            $request->Hadir = 1;  
+            $request->Alfa = 0;
+            $request->Izin = 0;
+            $request->Sakit = 0;  
+
+        } 
+        elseif ($request['status'] == 'Alfa')   {
+
+            $request->Hadir = 0;  
+            $request->Alfa = 1;
+            $request->Izin = 0;
+            $request->Sakit = 0; 
+        }
+        elseif ($request['status'] == 'Izin')   {
+
+            $request->Hadir = 0;  
+            $request->Alfa = 0;
+            $request->Izin = 1;
+            $request->Sakit = 0; 
+        }
+        elseif ($request['status'] == 'Sakit')   {
+
+            $request->Hadir = 0;  
+            $request->Alfa = 0;
+            $request->Izin = 0;
+            $request->Sakit = 1; 
+        }         
+
+        Absen::create($request->all());
+       
+        return redirect('/absen');
 
         // return $check;
     }
@@ -57,10 +84,11 @@ class AbsenController extends Controller
      */
     public function show($id)
     {
-        $students = Student::where('kelas_id', $id)->OrderBy('nama', 'asc')->get();
-        $class = Kelas::findorFail($id);
-        return view('/absen/show',compact('students','class'));
-        // return $class;
+        $data['carbon'] = Carbon::now();
+        $data['students'] = Student::where('kelas_id', $id)->OrderBy('nama', 'asc')->get();
+        $data['kelas'] = Kelas::findorFail($id);
+        return view('/absen/show',$data);
+        // return $data;
     }
 
     /**

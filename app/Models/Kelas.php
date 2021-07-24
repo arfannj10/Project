@@ -26,8 +26,8 @@ class Kelas extends Model
     //     return $this->belongsTo(Student::class);
     // }
 
-    // public function absen()
-    // {    
-    //     return $this->belongsToMany(Student::class, 'absens', 'kelas_id', 'student_id')->withPivot('status', 'tanggal', 'keterangan')->wherePivot('tanggal', Carbon::now('Asia/Jakarta')->format('Y-m-d'));
-    // }
+    public function absen()
+    {    
+        return $this->belongsToMany(Student::class, 'absens', 'kelas_id', 'student_id')->withPivot('status', 'tanggal', 'keterangan')->wherePivot('tanggal', Carbon::now('Asia/Jakarta')->format('Y-m-d'));
+    }
 }

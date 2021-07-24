@@ -1,52 +1,56 @@
-@extends('layouts/app')
+@extends('layouts/admin')
 
-@section('title', 'Data Siswa')
+@section('title', 'Absensi Siswa')
 
 @section('content')
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Absensi {{$kelas->nama_kelas}} <div class="float-right">{{Carbon\Carbon::now()->format('d-m-Y')}}</div></h6>
+    </div>
 
-<form action="/absen" method="post">
-    @csrf
-    <input type="hidden" name="kelas" value="{{$class->kelas_id}}">
-    <!-- <div class="mb-3">
-        <input type="date" class="form-control" name="tgl" value="{{ old('tgl')}}" required>
-    </div> -->
-    <table class="table table-striped mt-3">
-        <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">NIS</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($students as $dt)
-            <tr>
-                <!-- <input type="hidden" name="student_id" value="{{$dt->id}}"> -->
-                <td scope="row">{{$loop->iteration}}</td>
-                <td scope="row">{{$dt->nis}}</td>
-                <td scope="row">{{$dt->nama}}</td>
-                <td scope="row">
-                
-                    <label class="radio-inline">
-                        <input id="aktif" type="radio" name="status[{{$dt}}]" value="Hadir" checked>Hadir
-                    </label>
-                    <label class="radio-inline">
-                        <input id="aktif" type="radio" name="status[{{$dt}}]" value="Alfa">Alfa
-                    </label>
-                    <label class="radio-inline">
-                        <input id="aktif" type="radio" name="status[{{$dt}}]" value="Izin">Izin
-                    </label>
-                    <label class="radio-inline">
-                        <input id="aktif" type="radio" name="status[{{$dt}}]" value="Sakit">Sakit
-                    </label>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="card-body">
+        <form action="/absen" method="post">
+            @csrf
+            <input type="hidden" name="kelas" value="{{$kelas->id}}">
+            <input type="hidden" name="tgl" value="{{Carbon\Carbon::now()->format('d-m-Y')}}">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">NIS</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($students as $dt)
+                    <tr>
+                        <input type="hidden" name="student_id" value="{{$dt->id}}">
+                        <td scope="row">{{$loop->iteration}}</td>
+                        <td scope="row">{{$dt->nis}}</td>
+                        <td scope="row">{{$dt->nama}}</td>
+                        <td scope="row">
+                                <label class="radio-inline">
+                                    <input id="aktif" type="radio" name="status[{{$dt}}]" value="Hadir" checked>Hadir
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="aktif" type="radio" name="status[{{$dt}}]" value="Alfa">Alfa
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="aktif" type="radio" name="status[{{$dt}}]" value="Izin">Izin
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="aktif" type="radio" name="status[{{$dt}}]" value="Sakit">Sakit
+                                </label>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
 
 <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

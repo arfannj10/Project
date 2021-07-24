@@ -66,7 +66,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 ml-3">
                                 <label for="nama_kelas" class="form-label">Nama Kelas</label>
                                 <input type="text" class="form-control" name="nama_kelas" value="{{ old('nama_kelas')}}"
                                     placeholder="Isi nama kelas" required>

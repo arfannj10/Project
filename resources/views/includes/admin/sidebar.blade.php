@@ -63,7 +63,7 @@
         <i class="fas fa-fw fa-school"></i>
         <span>Kelas</span>
     </a>
-    <a class="nav-link collapsed" href="#">
+    <a class="nav-link collapsed" href="/absen">
         <i class="fas fa-fw fa-calendar-alt"></i>
         <span>Absen</span>
     </a>

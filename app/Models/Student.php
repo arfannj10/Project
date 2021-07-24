@@ -25,14 +25,14 @@ class Student extends Model
         return $this->hasMany(Pelajaran::class);
     }
 
-    public function nilai()
-    {
-        return $this->hasMany(Nilai::class);
-    }
-
-    // public function absensi()
-    // {   
-    //     return $this->belongsToMany(Kelas::class, 'absens', 'student_id', 'kelas_id')->withPivot('status', 'tanggal', 'keterangan')->wherePivot('tanggal', Carbon::now('Asia/Jakarta'));
+    // public function nilai()
+    // {
+    //     return $this->hasMany(Nilai::class);
     // }
+
+    public function absensi()
+    {   
+        return $this->belongsToMany(Absen::class, 'absens', 'student_id', 'kelas_id')->withPivot('status', 'tanggal', 'keterangan')->wherePivot('tanggal', Carbon::now('Asia/Jakarta'));
+    }
     
 }
